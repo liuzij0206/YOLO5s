@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['stage1', 'stage2', 'stage3']
+
+roboflow:
+  workspace: bigsasser
+  project: dr-i9w5g
+  version: 4
+  license: Private
+  url: https://app.roboflow.com/bigsasser/dr-i9w5g/4
