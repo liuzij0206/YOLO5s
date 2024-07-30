@@ -1,0 +1,39 @@
+# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
+# Hyperparameters for high-augmentation COCO training from scratch
+# python train.py --batch 32 --cfg yolov5m6.yaml --weights '' --data coco.yaml --img 1280 --epochs 300
+# See tutorials for hyperparameter evolution https://github.com/ultralytics/yolov5#tutorials
+
+# 1、训练相关参数
+lr0: 0.01  # initial learning rate (SGD=1E-2, Adam=1E-3) 初始化学习率(SGD=1E-2, Adam=1E-3)
+lrf: 0.1  # final OneCycleLR learning rate (lr0 * lrf) 最终学习率, 以one_cycle形式或者线性从lr0衰减至lr0 * lrf
+momentum: 0.937  # SGD momentum/Adam beta1
+weight_decay: 0.0005  # optimizer weight decay 5e-4  权值衰减
+warmup_epochs: 3.0  # warmup epochs (fractions ok)  前3个epoch进行warmup
+warmup_momentum: 0.8  # warmup initial momentum   warmup初始化动量
+warmup_bias_lr: 0.1  # warmup initial bias lr   warmup初始bias学习率
+# 2、损失函数相关参数
+box: 0.05  # box loss gain iou损失系数 
+cls: 0.3  # cls loss gain   分类损失系数
+cls_pw: 1.0  # cls BCELoss positive_weight  正样本权重
+obj: 0.7  # obj loss gain (scale with pixels) 有无物体损失系数
+obj_pw: 1.0  # obj BCELoss positive_weight
+# 3、其他几个参数
+iou_t: 0.20  # IoU training threshold iou训练时的阈值 应该是很久以前使用的一个参数，因为那个时候筛选正负样本是靠iou来筛选的，这个iou_t应该就是筛选正负样本用的iou阈值，现在都用宽高比来筛选了，所以这个参数现在也没什么用了
+anchor_t: 4.0  # anchor-multiple threshold  anchor的长宽比阈值（长:宽 = 4:1） 用于k-means中计算 bpr和aat
+# anchors: 3  # anchors per output layer (0 to ignore)
+fl_gamma: 0.0  # focal loss gamma (efficientDet default gamma=1.5)
+# 4、数据增强相关参数
+hsv_h: 0.015  # image HSV-Hue augmentation (fraction)  色调
+hsv_s: 0.7  # image HSV-Saturation augmentation (fraction) 饱和度
+hsv_v: 0.4  # image HSV-Value augmentation (fraction) 亮度
+degrees: 0.0  # image rotation (+/- deg) 旋转角度
+translate: 0.1  # image translation (+/- fraction) 平移
+scale: 0.9  # image scale (+/- gain) 图像缩放
+shear: 0.0  # image shear (+/- deg) 图像剪切 
+perspective: 0.0  # image perspective (+/- fraction), range 0-0.001  透明度
+flipud: 0.0  # image flip up-down (probability)  上下翻卷概率
+fliplr: 0.5  # image flip left-right (probability) 左右翻转概率
+mosaic: 1.0  # image mosaic (probability) 
+mixup: 0.0  # image mixup (probability) 图像混叠
+copy_paste: 0.2  # segment copy-paste (probability) 复制粘贴
+
